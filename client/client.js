@@ -1,5 +1,8 @@
-// we need the public key
-const keys = require("../dev/keys.js");
+// const keys = require("../dev/keys.js");
+// import keys from "..dev/keys.js";
+
+const publicVapidKey =
+  "BCRAG7kbb-mKNqFI_TrBwUK6qOhQIFpFY65e70g495vcnBKBMCzW2ctKqEXFx06qjVdlg4Xdoxu1nlzVrW1dq3o";
 
 // Check for the service worker support in current browser
 if ("serviceWorker" in navigator) {
@@ -7,7 +10,7 @@ if ("serviceWorker" in navigator) {
 }
 
 // Register the service worker, register push, send the push notification
-const send = async () => {
+async function send() {
   // Register the service worker
   console.log("Registering service worker...");
   const register = await navigator.serviceWorker.register("/worker.js", {
@@ -20,13 +23,14 @@ const send = async () => {
   console.log("Registering Push...");
   const subscription = await register.pushManager.subscribe({
     userVisibleOnly: true,
-    applicationServerKey: urlBase64ToUint8Array(keys.VAPID_PUB)
+    // applicationServerKey: urlBase64ToUint8Array(keys.VAPID_PUB)
+    applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
   });
   console.log("Push Registered successfully");
 
   // send the push notification
-  console.log("Sending Push Notification");
-  await fetch("/subcribe", {
+  console.log("Sending Push Notification...");
+  await fetch("/subscribe", {
     method: "POST",
     body: JSON.stringify(subscription),
     headers: {
@@ -34,7 +38,7 @@ const send = async () => {
     }
   });
   console.log("Push was sent successfully");
-};
+}
 
 // helper function comes from webpush API documentation on github
 function urlBase64ToUint8Array(base64String) {
