@@ -1,0 +1,2 @@
+- Create a server-side script that accepts an endpoint (using express, /subscribe)
+- on client side, send subscription object to the server, which triggers the service worker to trigger the notification

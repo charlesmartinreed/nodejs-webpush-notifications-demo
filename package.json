@@ -1,0 +1,16 @@
+{
+  "name": "push-notifications-example",
+  "version": "1.0.0",
+  "description": "- Create a server-side script that accepts an endpoint (using express, /subscribe) - on client side, send subscription object to the server, which triggers the service worker to trigger the notification",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "web-push": "^3.3.3"
+  }
+}
