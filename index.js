@@ -6,6 +6,9 @@ const keys = require("./dev/keys.js");
 const app = express(),
   port = process.env.PORT || 5000;
 
+// Set STATIC path
+app.use(express.static(path.join(__dirname, "client")));
+
 // MIDDLEWARE
 app.use(express.json());
 
